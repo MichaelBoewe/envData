@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Plot</title>
+    <!-- Include Plotly.js library -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <!-- Create a div to hold the plot -->
+    <div id="plot"></div>
+
+    <script>
+        // Function to fetch data from SQLite database and create the plot
+        async function fetchDataAndPlot() {
+            try {
+                // Fetch data from the SQLite database
+                const response = await fetch('data.db');
+                const data = await response.json();
+
+                // Extract timestamps and 'F' values
+                const timestamps = data.map(entry => entry.timestamp);
+                const values = data.map(entry => entry.F);
+
+                // Create a trace for the plot
+                const trace = {
+                    x: timestamps,
+                    y: values,
+                    type: 'scatter',
+                    mode: 'lines',
+                    name: 'F vs. Timestamp',
+                };
+
+                // Create layout for the plot
+                const layout = {
+                    title: 'Data Plot',
+                    xaxis: { title: 'Timestamp' },
+                    yaxis: { title: 'F' },
+                };
+
+                // Create the plot
+                Plotly.newPlot('plot', [trace], layout);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Call the fetchDataAndPlot function when the page loads
+        window.addEventListener('load', fetchDataAndPlot);
+    </script>
+</body>
+</html>
