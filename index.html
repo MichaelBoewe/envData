@@ -1,53 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Plot</title>
-    <!-- Include Plotly.js library -->
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-</head>
-<body>
-    <!-- Create a div to hold the plot -->
-    <div id="plot"></div>
+<body style="background-color:darkgray;">
 
-    <script>
-        // Function to fetch data from SQLite database and create the plot
-        async function fetchDataAndPlot() {
-            try {
-                // Fetch data from the SQLite database
-                const response = await fetch('data.db');
-                const data = await response.json();
-
-                // Extract timestamps and 'F' values
-                const timestamps = data.map(entry => entry.timestamp);
-                const values = data.map(entry => entry.F);
-
-                // Create a trace for the plot
-                const trace = {
-                    x: timestamps,
-                    y: values,
-                    type: 'scatter',
-                    mode: 'lines',
-                    name: 'F vs. Timestamp',
-                };
-
-                // Create layout for the plot
-                const layout = {
-                    title: 'Data Plot',
-                    xaxis: { title: 'Timestamp' },
-                    yaxis: { title: 'F' },
-                };
-
-                // Create the plot
-                Plotly.newPlot('plot', [trace], layout);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        }
-
-        // Call the fetchDataAndPlot function when the page loads
-        window.addEventListener('load', fetchDataAndPlot);
-    </script>
-</body>
-</html>
+    <div class="header">
+      <head>
+        
+      </head>
+      </div>
+      
+    <body>
+      <center><iframe src="./first_figure.html" height="800" width="1200"frameBorder="0"></iframe></center>
+      </body>
+      
+    
+    <div class="footer">
+      <a href="https://www.linkedin.com/in/adrian-dolinay-frm-96a289106/">
+       <img alt="linkedin" src="./img/linkedin.png" width="60" height="60">
+    </a>
+      
+      <a href="https://www.youtube.com/c/AdrianDolinay1">
+       <img alt="youtube" src="./img/youtube.png" width="80" height="60">
+    </a>
+      
+    </a>
+      
+      <a href="https://github.com/ad17171717">
+       <img alt="github" src="./img/github.png" width="60" height="60">
+    </a>
+      
+    </a>
+      
+      <a href="https://odysee.com/@adriandolinay:0">
+       <img alt="odysee" src="./img/odysee.png" width="60" height="60">
+    </a>
+      
+    </div>
+      
+    <style>
+      
+    .header{
+      height: 60px;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      font-family: "Verdana";
+      background-color:black;
+      color:#fff;
+     }
+      
+    .footer {
+      height: 60px;
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      font-family: "Verdana";
+      background-color: black;
+      color: white;
+    }
+      
+    
+    a {color:white} /* Globally */
+    
+    /* Each state */
+    
+    a:visited {text-decoration: none; color:white; }
+    a:hover { text-decoration: none; color:white; }
+    a:focus { text-decoration: none; color:white; }
+    a:hover, a:active { text-decoration: none; color:white }
+      
+    </style>
